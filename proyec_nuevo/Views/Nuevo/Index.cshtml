@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+
+<div class="container ">
+    <div class="row" style="">
+        <div class="col-lg-8 col-sm-offset-2 jumbotron" style="margin-top: 30px" ;>
+            <form action="/" method="post" id="frm">
+                <a>opciones </a>
+                <div id="ocultar" class="ocultar" style="display:none;" >
+                <div class="form-group" style="border-color:black;">
+                    <select name="busc" class="form-control">
+                        <option value="0">..::seleccionar::..</option>
+                        <option value="1">Nombre</option>
+                        <option value="2">Materia</option>
+                        <option value="3">Promedio</option>
+                    </select>
+                </div>
+                @*<div class="radio">*@
+                <label class="radio-inline"> <input type="radio" name="rd" value="1"/>Nombre</label>
+                @*</div>
+        <div class="radio"> *@
+                <label class="radio-inline"> <input type="radio" name="rd" value="2"/>Materia</label>
+                @*</div>
+        <div class="radio"> *@
+                <label class="radio-inline"> <input type="radio" name="rd" value="3" />Promedio</label>
+                @*</div>*@
+                    </div>
+                <div class="form-group">
+                    <input type="text" name="txtbuscar" value="" class="form-control" placeholder="Digite nombre a buscar" autocomplete="off"/>
+                </div>
+                <input type="submit" class="btn btn-info btn-lg" name="btn" value="BUSCAR" />
+            </form>
+</div>
+            <div class="col-lg-8 col-sm-offset-2 jumbotron" style="margin-top: 60px" ;>
+                <p>Resultados</p>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Carnet</th>
+                            <th>Nombre</th>
+                            <th>Materia</th>
+                            <th>Promedio</th>
+                            <th>Estado</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Carnet </td>
+                                <td>@item.Nombre </td>
+                                <td>@item.Materia </td>
+                                <td>@item.Promedio </td>
+                                <td>Pendiente</td>
+                                <td>@item.FechaRegistro </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+@section mostrarOcultar{
+<script type="text/javascript">
+    $(document).ready(
+        function () {
+            $("a").click(
+                function () {
+                    $("#ocultar").toggle();
+                }
+            );
+        }
+    );
+</script>
+}
+
+
+<script type="text/javascript">
+    $(".txtbuscar").validate({
+        rules: {
+            txtbuscar: {
+                required: true,
+                digits: true
+            }
+        }
+    });
+    </script>  
+        
